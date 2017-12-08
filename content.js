@@ -21,6 +21,7 @@ function checkTitleChange(){
     //set old VidTitle to new
     oldVidTitle = newVidTitle;
 
+    //hi
     //Prints to console for now
     //Will send to database here
     console.log(newVidTitle);
