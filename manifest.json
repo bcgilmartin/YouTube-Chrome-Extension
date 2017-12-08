@@ -1,0 +1,16 @@
+{
+  "manifest_version": 2,
+
+  "name": "Youtube Chrome Extension",
+  "description": "Collects watched videos for users to be shared with friends",
+  "version": "1.0",
+
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.youtube.com/*"
+      ],
+      "js": ["content.js"]
+    }
+  ]
+}
