@@ -7,3 +7,6 @@ How to test:
 3. Press "Load unpacked extension..." and find and select the folder this is contained in
 4. open a new tab and go to youtube.com and press f12 and at the top press on the console tab
 5. Go to any youtube video and see results
+
+
+AWS Portion Coming Soon to a Github near you!!
