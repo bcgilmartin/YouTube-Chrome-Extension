@@ -7,8 +7,7 @@ var newEmail = "";
 //Note: YouTube does not load a new URL it only updates it so this is needed
 var titleChangeHandler = window.setInterval(checkTitleChange, 500);
 
-// var clientLoadHandler = handleClientLoad();
-
+//No user error
 //Gets new video title and if it is different from the old one it will run
 //the rest of the fucntion
 //GETS: URL, Title
