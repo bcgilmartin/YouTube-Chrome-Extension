@@ -1,0 +1,12 @@
+.VideoTitle {
+  width: 120px;
+  height: 38px;
+  overflow-y: hidden;
+  position: relative;
+  white-space: normal;
+}
+
+/* .VideoTitle:hover {
+  overflow-y: visible;
+  z-index: 1;
+} */

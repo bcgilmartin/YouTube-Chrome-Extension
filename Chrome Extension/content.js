@@ -42,10 +42,17 @@ function checkTitleChange(){
         oldVidTitle = newVidTitle;
         //Prints to console for now
         //Will send to database here
-        console.log(oldVidTitle);
-        console.log(videoID.split("=")[1].split("&")[0]);
+
+        videoID = videoID.split("=")[1].split("&")[0];
+
+        timeStamp = new Date();
+
+        console.log(videoID);
         console.log(oldEmail);
-        objectToSend = {email:oldEmail, vidID:videoID, vidTitle:newVidTitle};
+        console.log(timeStamp);
+        objectToSend = {email:oldEmail, vidID:videoID, time:timeStamp};
+        JSONobject = JSON.stringify(objectToSend)
+        console.log(JSONobject);
       }
     }
   }

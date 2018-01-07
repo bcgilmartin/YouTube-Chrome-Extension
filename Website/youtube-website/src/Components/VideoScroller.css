@@ -1,0 +1,49 @@
+.VideoScroller {
+	position: relative;
+	max-width: 1000px;
+	height: 167px; // hide the scroll bar
+	overflow-x: hidden;
+	overflow-y: hidden;
+  margin-left: auto;
+  margin-right: auto;
+  background: #F5F5F5;
+	border-radius: 5px;
+}
+
+.videoScrollerMenu	{
+	height: 150px; // hide the scroll bar
+	background: #f3f3f3;
+	box-sizing: border-box;
+  padding-left: 4px;
+  white-space: nowrap;
+	overflow-x: auto;
+	overflow-y: hidden;
+	-webkit-overflow-scrolling: touch;
+}
+
+.videoPanelItem {
+		display: inline-block;
+		width: 150px;
+		height: 100px;
+		box-sizing: border-box;
+}
+
+.videoScrollerMenu::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+.videoScrollerMenu::-webkit-scrollbar
+{
+  height: 10px;
+	background-color: #F5F5F5;
+}
+
+.videoScrollerMenu::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #D62929;
+}
