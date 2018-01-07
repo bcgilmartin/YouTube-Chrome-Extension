@@ -5,6 +5,9 @@
   "description": "Collects watched videos for users to be shared with friends",
   "version": "1.0",
 
+  "browser_action": {
+    "default_popup": "popup.html"
+  },
   "content_scripts": [
     {
       "matches": [

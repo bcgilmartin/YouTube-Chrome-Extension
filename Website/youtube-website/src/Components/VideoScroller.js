@@ -4,8 +4,8 @@ import './VideoScroller.css'
 
 class VideoScroller extends Component {
 
-  displayVideo(id){
-    return this.props.handleDisplayVideo(id)
+  displayVideo(id, friend){
+    return this.props.handleDisplayVideo(id, friend)
   }
 
   render(){
@@ -13,7 +13,7 @@ class VideoScroller extends Component {
     if(this.props.videosInfoJson){
       listVideoJson = this.props.videosInfoJson.map(project => {
         return(
-          <li key={project.id} className="videoPanelItem"><VideoPanel thumbnail={project.snippet.thumbnails.default.url} title={project.snippet.title} displayVideo={this.displayVideo.bind(this, project.id)}/></li>
+          <li key={project.id} className="videoPanelItem"><VideoPanel thumbnail={project.snippet.thumbnails.default.url} title={project.snippet.title} displayVideo={this.displayVideo.bind(this, project.id, this.props.friendID)}/></li>
         );
       })
     }

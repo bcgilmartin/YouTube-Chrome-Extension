@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import VideoScroller from './Components/VideoScroller';
+import YoutubeVideoDisplay from './Components/YoutubeVideoDisplay'
 
 var jsonKeys = require('./AuthKeys.json');
 var API = jsonKeys.YoutubeKey;
@@ -11,7 +12,8 @@ class App extends Component {
     super();
     this.state = {
       videosInfoJson: [],
-      videoURL: ""
+      videoURL: "",
+      currFriend: ""
     }
   }
 
@@ -50,10 +52,15 @@ class App extends Component {
     });
   }
 
-  displayVideo(id) {
+  displayVideo(id, friend) {
     let vidURL;
     vidURL = "https://www.youtube.com/embed/" + id + "?autoplay=1";
-    this.setState({videoURL:vidURL})
+    this.setState({
+      videoURL:vidURL,
+      currFriend:friend
+    })
+    console.log(this.state.vidURL);
+    console.log(this.state.currFriend);
   }
 
   render() {
@@ -64,14 +71,14 @@ class App extends Component {
             <img src={logo} className="App-logo" alt="logo" />
             <h1 className="App-title">Youtube With Friends</h1>
           </header>
-          <h2 className="UserFollowed">blakegilmartin@gmail.com</h2><div className="SpaceTaker"> </div>
-          <VideoScroller userID="blakegilmartin@gmail.com" videosInfoJson={this.state.videosInfoJson} handleDisplayVideo={this.displayVideo.bind(this)} />
+          <h2 className="UserFollowed">&nbsp;&nbsp;blakegilmartin@gmail.com</h2><div className="SpaceTaker"> </div>
+          <VideoScroller friendID="blakegilmartin@gmail.com" videosInfoJson={this.state.videosInfoJson} handleDisplayVideo={this.displayVideo.bind(this)} />
           <br />
-          <div className="youtube" userID="blakegilmartin@gmail.com"><iframe title="title" width="560" height="315" src={this.state.videoURL} frameBorder="0" gesture="media" allow="encrypted-media" allowFullScreen></iframe></div>
-          <h2 className="UserFollowed">anthonyvu@gmail.com</h2><div className="SpaceTaker"> </div>
-          <VideoScroller id="anthonyvu@gmail.com" videosInfoJson={this.state.videosInfoJson} handleDisplayVideo={this.displayVideo.bind(this)} />
+          <YoutubeVideoDisplay className="youtube" friendID="blakegilmartin@gmail.com" videoFriendID={this.state.currFriend} video={this.state.videoURL} />
+          <h2 className="UserFollowed">&nbsp;&nbsp;anthonyvu@gmail.com</h2><div className="SpaceTaker"> </div>
+          <VideoScroller friendID="anthonyvu@gmail.com" videosInfoJson={this.state.videosInfoJson} handleDisplayVideo={this.displayVideo.bind(this)} />
           <br />
-          <div className="youtube" id="anthonyvu@gmail.com"><iframe title="title" width="560" height="315" src={this.state.videoURL} frameBorder="0" gesture="media" allow="encrypted-media" allowFullScreen></iframe></div>
+          <YoutubeVideoDisplay className="youtube" friendID="anthonyvu@gmail.com" videoFriendID={this.state.currFriend} video={this.state.videoURL} />
         </div>
       </div>
     );

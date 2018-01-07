@@ -15,7 +15,7 @@ class VideoPanel extends Component {
       return(
         videoPanel =
           <div className="VideoPanel">
-            <VideoThumbnail thumbnail={this.props.thumbnail} />
+            <VideoThumbnail thumbnail={this.props.thumbnail} displayVideo={this.displayVideo.bind(this)}/>
             <VideoTitle title={this.props.title} displayVideo={this.displayVideo.bind(this)}/>
           </div>
       );
