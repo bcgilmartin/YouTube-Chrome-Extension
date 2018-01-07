@@ -2,7 +2,7 @@ var mysql = require('mysql');
 var fs = require("fs");
 var contents = fs.readFileSync("AuthKeysRDS.json");
 var jsonContent = JSON.parse(contents);
-var AuthKeysRDS = ('./AuthKeysRDS.json');
+//var AuthKeysRDS = require('./AuthKeysRDS.json');
 
 var connection = mysql.createConnection({
 	host	 : jsonContent.host,
@@ -24,6 +24,17 @@ connection.connect(function(err){
 		return;
 	}
 	console.log('Connected to database.');
+	
+	var youtubeExtraction = require('./youtubeExtraction.json');
+	
+	var sql = "INSERT INTO history (email, videoID, dateAndTime) VALUES (youtubeExtraction.email, youtubeExtraction.vidID, youtubeExtraction.time)";
+	
+	connection.query(sql, function(err, result){
+		if (err) throw err;
+		console.log("1 record inserted");
+	});
+	
 });
+
 
 connection.end();
