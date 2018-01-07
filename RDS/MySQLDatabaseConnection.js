@@ -1,29 +1,21 @@
 var mysql = require('mysql');
-var filePath = ('./AuthKeysRDS');
-var AuthKeysRDS = JSON.parse(filePath);
+var fs = require("fs");
+var contents = fs.readFileSync("AuthKeysRDS.json");
+var jsonContent = JSON.parse(contents);
+var AuthKeysRDS = ('./AuthKeysRDS.json');
 
 var connection = mysql.createConnection({
-	host	 : AuthKeysRDS.host,
-	user     : AuthKeysRDS.user,
-	password : AuthKeysRDS.password,
-	port	 : AuthKeysRDS.port,
-	database : AuthKeysRDS.database
+	host	 : jsonContent.host,
+	user     : jsonContent.user,
+	password : jsonContent.password,
+	database : jsonContent.database
 });
 
 console.log({
-	host	 : AuthKeysRDS.host,
-	user     : AuthKeysRDS.user,
-	password : AuthKeysRDS.password,
-	port	 : AuthKeysRDS.port,
-	database : AuthKeysRDS.database
-
-});
-
-console.log({
-    host            : process.env.MYSQL_HOST,
-    user            : process.env.MYSQL_USER,
-    password        : process.env.MYSQL_SECRET,
-    database        : process.env.MYSQL_DB
+	host	 : jsonContent.host,
+	user     : jsonContent.user,
+	password : jsonContent.password,
+	database : jsonContent.database
 });
 
 connection.connect(function(err){
