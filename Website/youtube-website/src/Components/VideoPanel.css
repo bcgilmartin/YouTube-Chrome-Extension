@@ -1,3 +1,7 @@
 .VideoPanel {
   float: left;
 }
+
+.VideoPanel:hover{
+  background-color: #C2D0DC;
+}

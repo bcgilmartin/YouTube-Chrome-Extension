@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import VideoScroller from './Components/VideoScroller';
-import YoutubeVideoDisplay from './Components/YoutubeVideoDisplay'
+import YoutubeVideoDisplay from './Components/YoutubeVideoDisplay';
+import SignInPage from './Components/SignInPage';
+import UserFollowed from './Components/UserFollowed';
 
 var jsonKeys = require('./AuthKeys.json');
 var API = jsonKeys.YoutubeKey;
@@ -13,7 +15,8 @@ class App extends Component {
     this.state = {
       videosInfoJson: [],
       videoURL: "",
-      currFriend: ""
+      currFriend: "",
+      userEmail: ""
     }
   }
 
@@ -63,25 +66,46 @@ class App extends Component {
     console.log(this.state.currFriend);
   }
 
+  getEmail(email){
+    this.setState({
+      userEmail:email
+    })
+  }
+
   render() {
-    return (
-      <div className="Page">
-        <div className="App">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h1 className="App-title">Youtube With Friends</h1>
-          </header>
-          <h2 className="UserFollowed">&nbsp;&nbsp;blakegilmartin@gmail.com</h2><div className="SpaceTaker"> </div>
-          <VideoScroller friendID="blakegilmartin@gmail.com" videosInfoJson={this.state.videosInfoJson} handleDisplayVideo={this.displayVideo.bind(this)} />
-          <br />
-          <YoutubeVideoDisplay className="youtube" friendID="blakegilmartin@gmail.com" videoFriendID={this.state.currFriend} video={this.state.videoURL} />
-          <h2 className="UserFollowed">&nbsp;&nbsp;anthonyvu@gmail.com</h2><div className="SpaceTaker"> </div>
-          <VideoScroller friendID="anthonyvu@gmail.com" videosInfoJson={this.state.videosInfoJson} handleDisplayVideo={this.displayVideo.bind(this)} />
-          <br />
-          <YoutubeVideoDisplay className="youtube" friendID="anthonyvu@gmail.com" videoFriendID={this.state.currFriend} video={this.state.videoURL} />
+    if(this.state.userEmail === ""){
+      return(
+        <div className="Page">
+          <div className="App">
+            <header className="App-header">
+              <img src={logo} className="App-logo" alt="logo" />
+              <h1 className="App-title">Youtube With Friends</h1>
+            </header>
+            <SignInPage handleSignIn={this.getEmail.bind(this)}/>
+          </div>
         </div>
-      </div>
-    );
+      )
+    } else{
+      return (
+        <div className="Page">
+          <div className="App">
+            <header className="App-header">
+              <img src={logo} className="App-logo" alt="logo" />
+              <h1 className="App-title">Youtube With Friends</h1>
+              <h2 className="App-title">{this.state.userEmail}</h2>
+            </header>
+            <UserFollowed usersName="blakegilmartin@gmail.com" />
+            <VideoScroller friendID="blakegilmartin@gmail.com" videosInfoJson={this.state.videosInfoJson} handleDisplayVideo={this.displayVideo.bind(this)} />
+            <br />
+            <YoutubeVideoDisplay className="youtube" friendID="blakegilmartin@gmail.com" videoFriendID={this.state.currFriend} video={this.state.videoURL} />
+            <UserFollowed usersName="anthonyvu@gmail.com" />
+            <VideoScroller friendID="anthonyvu@gmail.com" videosInfoJson={this.state.videosInfoJson} handleDisplayVideo={this.displayVideo.bind(this)} />
+            <br />
+            <YoutubeVideoDisplay className="youtube" friendID="anthonyvu@gmail.com" videoFriendID={this.state.currFriend} video={this.state.videoURL} />
+          </div>
+        </div>
+      );
+    }
   }
 }
 
