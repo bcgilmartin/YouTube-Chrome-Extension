@@ -5,6 +5,9 @@ import VideoScroller from './Components/VideoScroller';
 import YoutubeVideoDisplay from './Components/YoutubeVideoDisplay';
 import SignInPage from './Components/SignInPage';
 import UserFollowed from './Components/UserFollowed';
+import Header from './Components/Header';
+import VISRlogo from './VISRlogo.png';
+import Sidemenu from './Components/Sidemenu';
 
 var jsonKeys = require('./AuthKeys.json');
 var API = jsonKeys.YoutubeKey;
@@ -14,10 +17,14 @@ class App extends Component {
     super();
     this.state = {
       videosInfoJson: [],
+      videosStatJson: [],
       videoURL: "",
       currFriend: "",
-      userEmail: ""
+      userEmail: "",
+      sidebarOpen: false
     }
+
+    this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this);
   }
 
   componentWillMount() {
@@ -26,11 +33,23 @@ class App extends Component {
 
     var videosCommas = videos.join();
     var videoURL = `https://www.googleapis.com/youtube/v3/videos?key=${API}&part=snippet&id=${videosCommas}`;
+    var statURL = `https://www.googleapis.com/youtube/v3/videos?part=statistics&id=${videosCommas}&key=${API}`
     fetch(videoURL)
       .then((response) => response.json())
       .then((responseJson) => {
         const videosInfoJson = responseJson.items;
         this.setState({videosInfoJson})
+        console.log(this.state.videosInfoJson)
+      })
+      .catch((error) => {
+        console.error(error);
+    });
+    fetch(statURL)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        const videosStatJson = responseJson.items;
+        this.setState({videosStatJson})
+        console.log(this.state.videosStatJson)
       })
       .catch((error) => {
         console.error(error);
@@ -43,12 +62,23 @@ class App extends Component {
 
     var videosCommas = videos.join();
     var videoURL = `https://www.googleapis.com/youtube/v3/videos?key=${API}&part=snippet&id=${videosCommas}`;
+    var statURL = `https://www.googleapis.com/youtube/v3/videos?part=statistics&id=${videosCommas}&key=${API}`
     fetch(videoURL)
       .then((response) => response.json())
       .then((responseJson) => {
         const videosInfoJson = responseJson.items;
         this.setState({videosInfoJson})
         console.log(this.state.videosInfoJson)
+      })
+      .catch((error) => {
+        console.error(error);
+    });
+    fetch(statURL)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        const videosStatJson = responseJson.items;
+        this.setState({videosStatJson})
+        console.log(this.state.videosStatJson)
       })
       .catch((error) => {
         console.error(error);
@@ -72,40 +102,52 @@ class App extends Component {
     })
   }
 
+  onSetSidebarOpen(open){
+    this.setState({sidebarOpen: open});
+  }
+
   render() {
-    if(this.state.userEmail === ""){
-      return(
-        <div className="Page">
-          <div className="App">
-            <header className="App-header">
-              <img src={logo} className="App-logo" alt="logo" />
-              <h1 className="App-title">Youtube With Friends</h1>
-            </header>
-            <SignInPage handleSignIn={this.getEmail.bind(this)}/>
-          </div>
-        </div>
-      )
-    } else{
+    var sidebarContent = <b>Sidebar content</b>;
+    // if(this.state.userEmail === ""){
+    //   return(
+    //     <div className="Page">
+    //       <div className="App">
+    //         <header className="App-header">
+    //           <img src={logo} className="App-logo" alt="logo" />
+    //           <h1 className="App-title">Youtube With Friends</h1>
+    //         </header>
+    //         <SignInPage handleSignIn={this.getEmail.bind(this)}/>
+    //       </div>
+    //     </div>
+    //   )
+    // } else{
       return (
-        <div className="Page">
-          <div className="App">
-            <header className="App-header">
-              <img src={logo} className="App-logo" alt="logo" />
-              <h1 className="App-title">Youtube With Friends</h1>
-              <h2 className="App-title">{this.state.userEmail}</h2>
-            </header>
-            <UserFollowed usersName="blakegilmartin@gmail.com" />
-            <VideoScroller friendID="blakegilmartin@gmail.com" videosInfoJson={this.state.videosInfoJson} handleDisplayVideo={this.displayVideo.bind(this)} />
-            <br />
-            <YoutubeVideoDisplay className="youtube" friendID="blakegilmartin@gmail.com" videoFriendID={this.state.currFriend} video={this.state.videoURL} />
-            <UserFollowed usersName="anthonyvu@gmail.com" />
-            <VideoScroller friendID="anthonyvu@gmail.com" videosInfoJson={this.state.videosInfoJson} handleDisplayVideo={this.displayVideo.bind(this)} />
-            <br />
-            <YoutubeVideoDisplay className="youtube" friendID="anthonyvu@gmail.com" videoFriendID={this.state.currFriend} video={this.state.videoURL} />
+        <b>
+          <div className="Page">
+            <div className="App">
+              <Header currUserEmail="Ryan Tran" logo={VISRlogo} />
+              <div className="Content">
+                <div className="Categories">
+                  <Sidemenu />
+                  <div className="HeaderSpace"></div>
+                    <UserFollowed usersName="TOP HITS" />
+                    <VideoScroller friendID="TopHits" videosInfoJson={this.state.videosInfoJson} handleDisplayVideo={this.displayVideo.bind(this)} />
+                    <YoutubeVideoDisplay className="youtube" friendID="TopHits" videoFriendID={this.state.currFriend} video={this.state.videoURL} />
+
+                    <UserFollowed usersName="MUSIC" />
+                    <VideoScroller friendID="music" videosInfoJson={this.state.videosInfoJson} handleDisplayVideo={this.displayVideo.bind(this)} />
+                    <YoutubeVideoDisplay className="youtube" friendID="music" videoFriendID={this.state.currFriend} video={this.state.videoURL} />
+
+                    <UserFollowed usersName="anthonyvu@gmail.com" />
+                    <VideoScroller friendID="anthonyvu@gmail.com" videosInfoJson={this.state.videosInfoJson} handleDisplayVideo={this.displayVideo.bind(this)} />
+                    <YoutubeVideoDisplay className="youtube" friendID="anthonyvu@gmail.com" videoFriendID={this.state.currFriend} video={this.state.videoURL} />
+                  </div>
+            </div>
+            </div>
           </div>
-        </div>
+        </b>
       );
-    }
+    // }
   }
 }
 

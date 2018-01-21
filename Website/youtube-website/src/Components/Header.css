@@ -1,0 +1,31 @@
+.Header{
+  width: 100%;
+  height: 95px;
+  background-color: #4e4e4e;
+}
+
+.email, .image{
+  display:inline-block;
+}
+
+.email{
+  font-family: Omnes;
+  color: #FDFDFD;
+  font-size: 20px;
+  letter-spacing: .5px;
+  margin-right: 3.3%;
+  margin-top: 10px;
+  float: right;
+  line-height: 75px;
+  vertical-align: middle;
+  text-align: right;
+}
+
+.image{
+  margin-right: 10px;
+  margin-top: 30px;
+  float: right;
+  line-height: 75px;
+  vertical-align: middle;
+  border-radius: 50%;
+}

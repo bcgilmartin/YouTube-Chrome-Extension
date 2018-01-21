@@ -1,13 +1,7 @@
 .App {
-  text-align: center;
-  width: 80%;
+  width: 85%;
   margin: auto;
-  background-color: #95a5a6;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+  background-color: #000000;
 }
 
 .App-header {
@@ -37,4 +31,22 @@
 
 .Page {
   background-color: #222;
+}
+
+@font-face {
+  font-family: Omnes;
+  src: url('./Fonts/omnes_extralight-webfont.ttf');
+}
+
+.Content{
+  margin-top: 0px;
+  background-color: #FDFDFD;
+}
+
+.Categories{
+  margin-left: 5%;
+}
+
+.HeaderSpace{
+  height: 25.5px;
 }

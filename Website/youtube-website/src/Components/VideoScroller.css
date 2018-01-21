@@ -1,17 +1,19 @@
 .VideoScroller {
 	position: relative;
-	max-width: 1000px;
-	height: 167px; // hide the scroll bar
+	max-width: 1131px;
+	height: 200px; // hide the scroll bar
 	overflow-x: hidden;
 	overflow-y: hidden;
   margin-left: auto;
   margin-right: auto;
-  background: #F5F5F5;
+  /* background: #F5F5F5; */
 	border-radius: 3px;
+	padding-top: 0px;
+	margin-top: 10px;
 }
 
 .videoScrollerMenu	{
-	height: 150px; // hide the scroll bar
+	height: 210px; // hide the scroll bar
 	background: #f3f3f3;
 	box-sizing: border-box;
   padding-left: 4px;
@@ -19,12 +21,13 @@
 	overflow-x: auto;
 	overflow-y: hidden;
 	-webkit-overflow-scrolling: touch;
+	padding-top: 0px;
+	margin-top: 2px;
 }
 
 .videoPanelItem {
 		display: inline-block;
-		width: 125px;
-		height: 100px;
+		width: 222px;
 		box-sizing: border-box;
 }
 

@@ -1,0 +1,24 @@
+.email, .image{
+  display:inline-block;
+}
+
+.email{
+  font-family: Omnes;
+  color: #FDFDFD;
+  font-size: 20px;
+  letter-spacing: .5px;
+  margin-right: 3.2%;
+  margin-top: 10px;
+  float: right;
+  line-height: 75px;
+  vertical-align: middle;
+  text-align: right;
+}
+
+.image{
+  margin-right: 5%;
+  margin-top: 10px;
+  float: right;
+  line-height: 80px;
+  vertical-align: middle;
+}

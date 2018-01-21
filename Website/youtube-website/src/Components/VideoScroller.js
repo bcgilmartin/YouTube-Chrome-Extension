@@ -13,7 +13,7 @@ class VideoScroller extends Component {
     if(this.props.videosInfoJson){
       listVideoJson = this.props.videosInfoJson.map(project => {
         return(
-          <li key={project.id} className="videoPanelItem"><VideoPanel thumbnail={project.snippet.thumbnails.default.url} title={project.snippet.title} displayVideo={this.displayVideo.bind(this, project.id, this.props.friendID)}/></li>
+          <li key={project.id} className="videoPanelItem"><VideoPanel thumbnail={project.snippet.thumbnails.medium.url} title={project.snippet.title} channel={project.snippet.channelTitle} displayVideo={this.displayVideo.bind(this, project.id, this.props.friendID)} /></li>
         );
       })
     }

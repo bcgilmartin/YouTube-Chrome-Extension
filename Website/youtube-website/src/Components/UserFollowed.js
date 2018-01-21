@@ -5,7 +5,7 @@ class UserFollowed extends Component {
 
   render(){
     return(
-      <h2 className="UserFollowed">&nbsp;{this.props.usersName}</h2>
+      <h2 className="UserFollowed"><b>&nbsp;{this.props.usersName}</b></h2>
     );
   }
 }
